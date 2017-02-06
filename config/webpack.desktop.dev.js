@@ -28,7 +28,7 @@ module.exports = [
     ]
   }),
   webpackMerge(rendererConfig, {
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
 
     output: {
       path: helpers.root('dist'),

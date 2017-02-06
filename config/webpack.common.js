@@ -1,3 +1,4 @@
+const { CheckerPlugin } = require('awesome-typescript-loader');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var helpers = require('./helpers');
@@ -11,7 +12,10 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.ts', '.js']
+    extensions: ['', '.ts', '.js'],
+    modulesDirectories: [
+      'node_modules'
+    ]
   },
 
   module: {
@@ -40,7 +44,7 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap', 'sass')
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass')
       },
       {
         test: /\.css$/,
@@ -56,6 +60,8 @@ module.exports = {
   },
 
   plugins: [
+    new CheckerPlugin(),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
     }),
