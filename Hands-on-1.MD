@@ -14,17 +14,17 @@
 	        *	Open a Terminal and go to directory of the sample application
 	        *	Run:
 
-	        ```
-         npm install
-            ```
+```
+npm install
+```
 
-	        ```
-	      npm start
-            ```
+```
+npm start
+```
 
-	*	Verify the application
-	        *	Open a browser and navigate to http://localhost:8080
-	        *	Check whether the application loads properly
+    *	Verify the application
+            *	Open a browser and navigate to http://localhost:8080
+            *	Check whether the application loads properly
 
 1. Dockerize the web application
 	* Install & verify Docker on Ubuntu
