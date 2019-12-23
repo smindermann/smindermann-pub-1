@@ -1,37 +1,43 @@
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { NgModule }         from '@angular/core';
-import { BrowserModule }    from '@angular/platform-browser';
+import { NgModule }       from '@angular/core';
+import { BrowserModule }  from '@angular/platform-browser';
+import { FormsModule }    from '@angular/forms';
+import { HttpClientModule }    from '@angular/common/http';
 
-import { AppComponent }     from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
 
-import { AboutComponent }   from './about.component';
-import { BannerComponent }  from './banner.component';
-import { HeroService,
-         UserService }      from './model';
-import { TwainService }     from './shared/twain.service';
-import { WelcomeComponent } from './welcome.component';
+import { AppRoutingModule }     from './app-routing.module';
 
-
-import { DashboardModule }  from './dashboard/dashboard.module';
-import { SharedModule }     from './shared/shared.module';
+import { AppComponent }         from './app.component';
+import { DashboardComponent }   from './dashboard/dashboard.component';
+import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
+import { HeroesComponent }      from './heroes/heroes.component';
+import { HeroSearchComponent }  from './hero-search/hero-search.component';
+import { MessagesComponent }    from './messages/messages.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    DashboardModule,
+    FormsModule,
     AppRoutingModule,
-    SharedModule
+    HttpClientModule,
+
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
-  providers:    [ { provide: LocationStrategy, useClass: HashLocationStrategy }, HeroService, TwainService, UserService ],
-  declarations: [ AppComponent, AboutComponent, BannerComponent, WelcomeComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    HeroesComponent,
+    HeroDetailComponent,
+    MessagesComponent,
+    HeroSearchComponent
+  ],
+  bootstrap: [ AppComponent ]
 })
+
 export class AppModule { }
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

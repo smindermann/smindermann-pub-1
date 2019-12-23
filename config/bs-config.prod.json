@@ -1,5 +1,0 @@
-{
-  "port": 4040,
-  "files": ["./dist/**/*.{html,htm,css,js}"],
-  "server": { "baseDir": "./dist" }
-}
