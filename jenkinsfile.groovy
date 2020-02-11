@@ -33,7 +33,7 @@ pipeline {
             //TODO: add snapshot tag for Development build and proper tag for production(master) with branch condition check
             steps{
 
-                sh "sudo docker build -t smindermann/docker-rep-pub-01:v1.0 ."
+                sh "docker build -t smindermann/docker-rep-pub-01:v1.0 ."
             }
         }
 
@@ -44,7 +44,7 @@ pipeline {
                     sh "docker login -u ${DOCKER_HUB_USERNAME}  -p  ${DOCKER_HUB_PASSWORD}"
                     //TODO: add snapshot tag for development build and proper version/tag for production(master) with branch condition check
 
-                    sh "sudo docker push smindermann/docker-rep-pub-01:v1.0"
+                    sh "docker push smindermann/docker-rep-pub-01:v1.0"
                    /* docker.withRegistry('repo.yaal.be', 'nexus-id') {
 
                     }*/
