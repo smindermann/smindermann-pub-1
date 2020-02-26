@@ -72,15 +72,15 @@ pipeline {
 
 
                         //Remove all containers
-                      sshCommand remote: remote, command: "docker rm \$(docker stop \$(docker ps -a -q --filter ancestor=smindermann/docker-rep-pub-01:v1.0 --format=\"{{.ID}}\"))", failOnError: false
+                      sshCommand remote: remote, command: "sudo docker rm \$(docker stop \$(docker ps -a -q --filter ancestor=smindermann/docker-rep-pub-01:v1.0 --format=\"{{.ID}}\"))", failOnError: false
 
                         //Delete the existing images
-                      sshCommand remote: remote, command: "docker rmi smindermann/docker-rep-pub-01:v1.0", failOnError: false
+                      sshCommand remote: remote, command: "sudo docker rmi smindermann/docker-rep-pub-01:v1.0", failOnError: false
 
                         //Docker Login
-                       sshCommand remote: remote, command: "docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}"
+                       sshCommand remote: remote, command: "sudo docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}"
                         //Start the app again
-                      sshCommand remote: remote, command: "docker run -p 5100:4200 -d smindermann/docker-rep-pub-01:v1.0"
+                      sshCommand remote: remote, command: "sudo docker run -p 5100:4200 -d smindermann/docker-rep-pub-01:v1.0"
 
 
 
@@ -91,7 +91,7 @@ pipeline {
         stage("Cleanup Jenkins"){
                 steps{
                         script {
-                            sh "docker system prune -f"
+                            sh "sudo docker system prune -f"
                         }
 
                      }
